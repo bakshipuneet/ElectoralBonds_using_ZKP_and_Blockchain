@@ -1,53 +1,65 @@
 const Web3 = require('web3');
-const contractABI = [/* ABI of ElectoralBondServiceProvider contract */];
-const contractAddress = '/* Address of ElectoralBondServiceProvider contract */';
+const identityManagerABI = [/* ABI of IdentityManager contract */];
+const identityManagerAddress = '/* Address of IdentityManager contract */';
+const electoralBondServiceProviderABI = [/* ABI of ElectoralBondServiceProvider contract */];
+const electoralBondServiceProviderAddress = '/* Address of ElectoralBondServiceProvider contract */';
 
 // Initialize a web3 provider
 const web3 = new Web3('/* Web3 provider URL */');
 
-// Create a contract instance
-const contract = new web3.eth.Contract(contractABI, contractAddress);
+// Create contract instances
+const identityManagerContract = new web3.eth.Contract(identityManagerABI, identityManagerAddress);
+const electoralBondServiceProviderContract = new web3.eth.Contract(electoralBondServiceProviderABI, electoralBondServiceProviderAddress);
 
-// Example function to generate key pair
+// Example function to register a user identity with IdentityManager contract
+async function registerIdentity(user, name, role, kyc) {
+    // Prepare the transaction data
+    const txData = identityManagerContract.methods.registerIdentity(user, name, role, kyc).encodeABI();
+
+    // Send transaction
+    await sendTransaction(txData, 'registerIdentity');
+}
+
+// Example function to generate key pair with ElectoralBondServiceProvider contract
 async function generateKeyPair() {
     // Prepare the transaction data
-    const txData = contract.methods.generateKeyPair().encodeABI();
+    const txData = electoralBondServiceProviderContract.methods.generateKeyPair().encodeABI();
 
     // Send transaction
     await sendTransaction(txData, 'generateKeyPair');
 }
 
-// Example function to generate bonds
+// Example function to generate bonds with ElectoralBondServiceProvider contract
 async function generateBonds() {
     // Prepare the transaction data
-    const txData = contract.methods.generateBonds().encodeABI();
+    const txData = electoralBondServiceProviderContract.methods.generateBonds().encodeABI();
 
     // Send transaction
     await sendTransaction(txData, 'generateBonds');
 }
 
-// Example function to issue bond
+// Example function to issue bond with ElectoralBondServiceProvider contract
 async function issueBond(bondId, amount) {
     // Prepare the transaction data
-    const txData = contract.methods.issueBond(bondId, amount).encodeABI();
+    const txData = electoralBondServiceProviderContract.methods.issueBond(bondId, amount).encodeABI();
 
     // Send transaction
     await sendTransaction(txData, 'issueBond');
 }
 
-// Example function to redeem bond
+// Example function to redeem bond with ElectoralBondServiceProvider contract
 async function redeemBond(bondId) {
     // Prepare the transaction data
-    const txData = contract.methods.redeemBond(bondId).encodeABI();
+    const txData = electoralBondServiceProviderContract.methods.redeemBond(bondId).encodeABI();
 
     // Send transaction
     await sendTransaction(txData, 'redeemBond');
 }
 
-// Example function to shenc bond
+// Example function to shenc bond with ElectoralBondServiceProvider contract
 async function shencBond(bondId, publicKey) {
     // Prepare the transaction data
-    const txData = contract.methods.shencBond(bondId, publicKey).encodeABI();
+    const txData = electoralBondServiceProviderContract.methods.shencBond(bondId, publicKey).encodeABI();
 
     // Send transaction
     await sendTransaction(txData, 'shencBond');
@@ -63,7 +75,7 @@ async function sendTransaction(txData, functionName) {
         nonce: web3.utils.toHex(txCount),
         gasLimit: web3.utils.toHex(800000), // Adjust gas limit accordingly
         gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei')), // Adjust gas price accordingly
-        to: contractAddress,
+        to: '/* Address of contract */', // Replace with the contract address you are interacting with
         data: txData
     };
 
@@ -76,6 +88,7 @@ async function sendTransaction(txData, functionName) {
 }
 
 // Call the functions
+registerIdentity(/* User address */, /* User name */, /* User role */, /* KYC data */);
 generateKeyPair();
 generateBonds();
 issueBond(/* Bond ID */, /* Amount */);
