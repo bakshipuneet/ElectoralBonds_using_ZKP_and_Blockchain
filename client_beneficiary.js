@@ -11,7 +11,7 @@ const web3 = new Web3('/* Web3 provider URL */');
 const identityManagerContract = new web3.eth.Contract(identityManagerABI, identityManagerAddress);
 const electoralBondServiceProviderContract = new web3.eth.Contract(electoralBondServiceProviderABI, electoralBondServiceProviderAddress);
 
-// Example function to register a user identity with IdentityManager contract
+// function to register a user identity with IdentityManager contract
 async function registerIdentity(user, name, role, kyc) {
     // Prepare the transaction data
     const txData = identityManagerContract.methods.registerIdentity(user, name, role, kyc).encodeABI();
@@ -20,7 +20,7 @@ async function registerIdentity(user, name, role, kyc) {
     await sendTransaction(txData, 'registerIdentity');
 }
 
-// Example function to call redeem with ElectoralBondServiceProvider contract
+// function to call redeem with ElectoralBondServiceProvider contract
 async function callRedeem() {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.redeem().encodeABI();
