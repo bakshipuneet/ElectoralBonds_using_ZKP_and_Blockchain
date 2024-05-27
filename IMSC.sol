@@ -7,12 +7,12 @@ The IdentityManager contract provides functionalities for managing user identiti
 Main components and functionalities of the IdentityManager contract:
 
 1. Structures:
-	Identity			: Represents the attributes of a user identity, such as name, email, phone number, role, and existence status.
-	CryptParams			: Holds cryptographic parameters common to all users, such as public key and nonce.
+	Identity	: Represents the attributes of a user identity, such as name, email, phone number, role, and existence status.
+	CryptParams	: Holds cryptographic parameters common to all users, such as public key and nonce.
 
 2. Mappings:
-	identities			: Maps user addresses to their corresponding Identity struct.
-	users				: Stores the addresses of all registered users.
+	identities	: Maps user addresses to their corresponding Identity struct.
+	users		: Stores the addresses of all registered users.
 
 3. Events:
 	IdentityRegistered	: Fired when a new user identity is registered.
@@ -23,7 +23,7 @@ Main components and functionalities of the IdentityManager contract:
 
 4. Modifiers:
 	onlyOwnerOrServiceProvider: Restricts access to certain functions to the contract owner or the service provider contract.
-	onlyOwner			: Restricts access to certain functions to the contract owner.
+	onlyOwner		: Restricts access to certain functions to the contract owner.
 	onlyServiceProvider	: Restricts access to certain functions to the service provider contract.
 	identityExists		: Checks if a user identity exists.
 
@@ -33,12 +33,10 @@ Main components and functionalities of the IdentityManager contract:
 	deleteIdentity		: Deletes a user identity.
 	rqstDonorMembership	: Allows users with certain roles to upgrade to the "Donor" role.
 	setCryptParams		: Sets the common cryptographic parameters for all users.
-	getAllUsers			: Returns the addresses of all registered users.
-	hasRole				: Checks if a user has a specific role.
+	getAllUsers		: Returns the addresses of all registered users.
+	hasRole			: Checks if a user has a specific role.
 
 **********************************************************************/
-
-
 pragma solidity ^0.8.0;
 
 contract IdentityManager {
@@ -112,8 +110,7 @@ contract IdentityManager {
     }
 
     function performKYCVerification(string memory kycData) private onlyFinancialInstitution view returns (bool) {
-        // Dummy implementation of KYC verification
-        // You should implement your actual KYC verification logic here
+        // KYC verification logic here
         return true;
 	}
 	
@@ -128,7 +125,6 @@ contract IdentityManager {
 
     function deleteIdentity(address user) public onlyOwner identityExists(user) {
         delete identities[user];
-        // You may want to remove the user from the 'users' array here
         emit IdentityDeleted(user);
     }
 
