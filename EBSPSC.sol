@@ -15,24 +15,24 @@ Main components and functionalities of the ElectoralBondServiceProvider contract
 	contract, which it uses to authenticate users.
 
 2. Modifiers:
-	onlyOwner		: Restricts certain functions to be callable only by the contract owner.
-	onlyRole		: Restricts access to certain functions based on the role of the caller.
+	onlyOwner	: Restricts certain functions to be callable only by the contract owner.
+	onlyRole	: Restricts access to certain functions based on the role of the caller.
 
 3. Events:
-	BondIssued		: Emits when a bond is issued.
+	BondIssued	: Emits when a bond is issued.
 	BondRedeemed	: Emits when a bond is redeemed.
-	BondShared		: Emits when a bond is shared.
-	RTI				: Emits when a request for information (RTI) is made.
+	BondShared	: Emits when a bond is shared.
+	RTI		: Emits when a request for information (RTI) is made.
 
 4. Functions:
 	generateKeyPair	: Generates a key pair. Callable by users with roles "FinancialInstitution" or "ECI".
 	generateBond	: Generates a bond. Callable by users with the "FinancialInstitution" role.
-	issueBond		: Issues a bond. Callable by users with the "FinancialInstitution" role.
-	shencBond		: Performs bond encryption. Callable by users with roles "FinancialInstitution" or "ECI".
-	rti				: Allows users to request information. Callable by users with roles "Citizen" or "ECI".
+	issueBond	: Issues a bond. Callable by users with the "FinancialInstitution" role.
+	shencBond	: Performs bond encryption. Callable by users with roles "FinancialInstitution" or "ECI".
+	rti		: Allows users to request information. Callable by users with roles "Citizen" or "ECI".
 	purchaseBond	: Allows users to purchase bonds. Callable by users with the "Donor" role.
-	redeemBond		: Allows users to redeem bonds. Callable by users with the "Beneficiary" role.
-	shareBond		: Allows donors to share bonds. Callable only by users with the "Donor" role.
+	redeemBond	: Allows users to redeem bonds. Callable by users with the "Beneficiary" role.
+	shareBond	: Allows donors to share bonds. Callable only by users with the "Donor" role.
 	changeIdentityManager: Allows the contract owner to change the IdentityManager contract address.
 
 ******************************************************************************/
@@ -66,38 +66,38 @@ contract ElectoralBondServiceProvider {
     }
 
     function generateKeyPair() public onlyRole(IdentityManager.Role.FinancialInstitution) onlyRole(IdentityManager.Role.ECI) returns (bytes memory publicKey, bytes memory privateKey) {
-        // Implement key pair generation
+        // key pair generation
     }
 
     function generateBond(address beneficiary, uint256 amount) public onlyRole(IdentityManager.Role.FinancialInstitution) {
-        // Implement bond generation
+        // bond generation
         emit BondIssued(msg.sender, beneficiary, amount);
     }
 
     function issueBond(address beneficiary, uint256 amount) public onlyRole(IdentityManager.Role.FinancialInstitution) {
-        // Implement bond issuance
+        // bond issuance
         emit BondIssued(msg.sender, beneficiary, amount);
     }
 
     function shencBond() public onlyRole(IdentityManager.Role.FinancialInstitution) onlyRole(IdentityManager.Role.ECI) {
-        // Implement bond encryption
+        // bond encryption
     }
 
     function rti() public onlyRole(IdentityManager.Role.Citizen) onlyRole(IdentityManager.Role.ECI) {
-        // Implement RTI (Right to Information) functionality
+        // RTI (Right to Information) functionality
         emit RTI(msg.sender, "Request for information");
     }
 
     function purchaseBond() public onlyRole(IdentityManager.Role.Donor) {
-        // Implement bond purchasing
+        // bond purchasing
     }
 
     function redeemBond() public onlyRole(IdentityManager.Role.Beneficiary) {
-        // Implement bond redemption
+        // bond redemption
     }
 
     function shareBond(address to, uint256 amount) public onlyRole(IdentityManager.Role.Donor) {
-        // Implement bond sharing
+        // bond sharing
         emit BondShared(msg.sender, to, amount);
     }
 
