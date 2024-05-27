@@ -11,7 +11,7 @@ const web3 = new Web3('/* Web3 provider URL */');
 const identityManagerContract = new web3.eth.Contract(identityManagerABI, identityManagerAddress);
 const electoralBondServiceProviderContract = new web3.eth.Contract(electoralBondServiceProviderABI, electoralBondServiceProviderAddress);
 
-// Example function to register a user identity with IdentityManager contract
+// function to register a user identity with IdentityManager contract
 async function registerIdentity(user, name, role, kyc) {
     // Prepare the transaction data
     const txData = identityManagerContract.methods.registerIdentity(user, name, role, kyc).encodeABI();
@@ -20,7 +20,7 @@ async function registerIdentity(user, name, role, kyc) {
     await sendTransaction(txData, 'registerIdentity');
 }
 
-// Example function to generate key pair with ElectoralBondServiceProvider contract
+// function to generate key pair with ElectoralBondServiceProvider contract
 async function generateKeyPair() {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.generateKeyPair().encodeABI();
@@ -29,7 +29,7 @@ async function generateKeyPair() {
     await sendTransaction(txData, 'generateKeyPair');
 }
 
-// Example function to generate bonds with ElectoralBondServiceProvider contract
+// function to generate bonds with ElectoralBondServiceProvider contract
 async function generateBonds() {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.generateBonds().encodeABI();
@@ -38,7 +38,7 @@ async function generateBonds() {
     await sendTransaction(txData, 'generateBonds');
 }
 
-// Example function to issue bond with ElectoralBondServiceProvider contract
+// function to issue bond with ElectoralBondServiceProvider contract
 async function issueBond(bondId, amount) {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.issueBond(bondId, amount).encodeABI();
@@ -47,7 +47,7 @@ async function issueBond(bondId, amount) {
     await sendTransaction(txData, 'issueBond');
 }
 
-// Example function to redeem bond with ElectoralBondServiceProvider contract
+// function to redeem bond with ElectoralBondServiceProvider contract
 async function redeemBond(bondId) {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.redeemBond(bondId).encodeABI();
@@ -56,7 +56,7 @@ async function redeemBond(bondId) {
     await sendTransaction(txData, 'redeemBond');
 }
 
-// Example function to shenc bond with ElectoralBondServiceProvider contract
+// function to shenc bond with ElectoralBondServiceProvider contract
 async function shencBond(bondId, publicKey) {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.shencBond(bondId, publicKey).encodeABI();
