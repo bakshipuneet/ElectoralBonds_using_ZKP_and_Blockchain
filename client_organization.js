@@ -11,7 +11,7 @@ const web3 = new Web3('/* Web3 provider URL */');
 const identityManagerContract = new web3.eth.Contract(identityManagerABI, identityManagerAddress);
 const electoralBondServiceProviderContract = new web3.eth.Contract(electoralBondServiceProviderABI, electoralBondServiceProviderAddress);
 
-// Example function to register a user identity with IdentityManager contract
+// function to register a user identity with IdentityManager contract
 async function registerIdentity(user, name, role, kyc) {
     // Prepare the transaction data
     const txData = identityManagerContract.methods.registerIdentity(user, name, role, kyc).encodeABI();
@@ -20,7 +20,7 @@ async function registerIdentity(user, name, role, kyc) {
     await sendTransaction(txData, 'registerIdentity');
 }
 
-// Example function to update user role to "donor" with IdentityManager contract
+// function to update user role to "donor" with IdentityManager contract
 async function updateRoleToDonor(user) {
     // Prepare the transaction data
     const txData = identityManagerContract.methods.updateRole(user, 'donor').encodeABI();
@@ -29,7 +29,7 @@ async function updateRoleToDonor(user) {
     await sendTransaction(txData, 'updateRoleToDonor');
 }
 
-// Example function to call purchase bond with ElectoralBondServiceProvider contract
+// function to call purchase bond with ElectoralBondServiceProvider contract
 async function purchaseBond(bondId, amount) {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.purchaseBond(bondId, amount).encodeABI();
@@ -38,7 +38,7 @@ async function purchaseBond(bondId, amount) {
     await sendTransaction(txData, 'purchaseBond');
 }
 
-// Example function to call share bond with ElectoralBondServiceProvider contract
+// function to call share bond with ElectoralBondServiceProvider contract
 async function shareBond(bondId, recipient, amount) {
     // Prepare the transaction data
     const txData = electoralBondServiceProviderContract.methods.shareBond(bondId, recipient, amount).encodeABI();
