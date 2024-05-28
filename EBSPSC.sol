@@ -92,8 +92,12 @@ contract ElectoralBondServiceProvider {
         // bond purchasing
     }
 
-    function redeemBond() public onlyRole(IdentityManager.Role.Beneficiary) {
+    
+    function redeemBond() public onlyRole(IdentityManager.Role.FinancialInstitution) {
         // bond redemption
+	// only bank should be able to call redeem method of smart contract 
+	// beneficiary should reach out to bank for redemption and bank should do 
+	// necessary verification
     }
 
     function shareBond(address to, uint256 amount) public onlyRole(IdentityManager.Role.Donor) {
