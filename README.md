@@ -1,2 +1,2 @@
-# ElectoralBonds_using_ZKP_and_Blockchain
-Privacy-Preserving Electoral Bond Scheme based on Zero-Knowledge Proof and Blockchain
+# Blockchain-based ElectoralBonds_using_ZKP_and_HE
+Privacy-Preserving Blockchain-based Electoral Bond Scheme using Zero-Knowledge Proof and Homomorphic Encryption
