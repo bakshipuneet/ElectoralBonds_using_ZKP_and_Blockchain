@@ -43,9 +43,6 @@ contract IdentityManager {
     enum Role { None, Citizen, Beneficiary, FinancialInstitution, Organization, ECI, Donor }
 
     struct Identity {
-        string name;
-        string email;
-        string phoneNumber;
         Role role;
         bool exists;
     }
